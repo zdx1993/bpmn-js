@@ -677,6 +677,57 @@ describe('features/copy-paste', function() {
 
   });
 
+
+  describe('pool extraction', function() {
+
+    beforeEach(bootstrapModeler(require('./pool-extraction.bpmn'), { modules: testModules }));
+
+
+    it('should copy contents, remove pool and paste to process', inject(
+      function(elementRegistry, copyPaste, modeling, canvas) {
+
+        // given
+        var participant = elementRegistry.get('Participant');
+
+        var flowNodes = participant.children.slice();
+
+        // when
+        copyPaste.copy(flowNodes);
+
+        modeling.removeElements([ participant ]);
+
+        var newRootElement = canvas.getRootElement();
+
+        copyPaste.paste({
+          element: newRootElement,
+          point: {
+            x: 300,
+            y: 300
+          }
+        });
+
+        // then
+        var newChildren = newRootElement.children;
+
+        // 1 start event
+        // 1 task
+        // 1 gateway
+        // 2 sequence flows
+        // 3 external labels
+        expect(newChildren).to.have.lengthOf(8);
+
+        var startEvent = newChildren.find(function(e) {
+          return !e.labelTarget && is(e, 'bpmn:StartEvent');
+        });
+
+        expect(startEvent).to.exist;
+        expect(startEvent.label).to.exist;
+        expect(startEvent.label.parent).to.eql(newRootElement);
+      }
+    ));
+
+  });
+
 });
 
 

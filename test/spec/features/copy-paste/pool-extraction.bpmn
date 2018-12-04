@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="sid-38422fae-e03e-43a3-bef4-bd33b32041b2" targetNamespace="http://bpmn.io/bpmn" exporter="http://bpmn.io" exporterVersion="0.10.1">
+  <collaboration id="Collaboration">
+    <participant id="Participant" processRef="Process" />
+  </collaboration>
+  <process id="Process" isExecutable="false">
+    <startEvent id="StartEvent" name="hunger noticed">
+      <outgoing>SequenceFlow_labeled</outgoing>
+    </startEvent>
+    <task id="Task" name="choose recipe">
+      <incoming>SequenceFlow_labeled</incoming>
+      <outgoing>SequenceFlow_2</outgoing>
+    </task>
+    <exclusiveGateway id="ExclusiveGateway" name="desired dish?">
+      <incoming>SequenceFlow_2</incoming>
+    </exclusiveGateway>
+    <sequenceFlow id="SequenceFlow_2" sourceRef="Task" targetRef="ExclusiveGateway" />
+    <sequenceFlow id="SequenceFlow_labeled" name="A" sourceRef="StartEvent" targetRef="Task" />
+  </process>
+  <bpmndi:BPMNDiagram id="BpmnDiagram_1">
+    <bpmndi:BPMNPlane id="BpmnPlane_1" bpmnElement="Collaboration">
+      <bpmndi:BPMNShape id="Participant_di" bpmnElement="Participant">
+        <omgdc:Bounds x="160" y="142" width="461" height="142" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="StartEvent_di" bpmnElement="StartEvent">
+        <omgdc:Bounds x="239" y="184" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="221" y="219" width="73" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_0kmcz3u_di" bpmnElement="Task">
+        <omgdc:Bounds x="341" y="162" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ExclusiveGateway_di" bpmnElement="ExclusiveGateway" isMarkerVisible="true">
+        <omgdc:Bounds x="503" y="177" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="496" y="225" width="65" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_2_di" bpmnElement="SequenceFlow_2">
+        <omgdi:waypoint x="441" y="202" />
+        <omgdi:waypoint x="503" y="202" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="427" y="177" width="90" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_labeled_di" bpmnElement="SequenceFlow_labeled">
+        <omgdi:waypoint x="275" y="202" />
+        <omgdi:waypoint x="341" y="202" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="305" y="184" width="7" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
