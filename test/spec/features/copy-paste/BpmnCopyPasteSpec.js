@@ -34,12 +34,12 @@ describe('features/copy-paste', function() {
     coreModule
   ];
 
-  var basicXML = require('../../../fixtures/bpmn/features/copy-paste/basic.bpmn'),
+  var basicXML = require('./basic.bpmn'),
       clonePropertiesXML = require('../../../fixtures/bpmn/features/replace/clone-properties.bpmn'),
-      propertiesXML = require('../../../fixtures/bpmn/features/copy-paste/properties.bpmn'),
-      collaborationXML = require('../../../fixtures/bpmn/features/copy-paste/collaboration.bpmn'),
-      collaborationMultipleXML = require('../../../fixtures/bpmn/features/copy-paste/collaboration-multiple.bpmn'),
-      collaborationAssociations = require('../../../fixtures/bpmn/features/copy-paste/data-associations.bpmn');
+      propertiesXML = require('./properties.bpmn'),
+      collaborationXML = require('./collaboration.bpmn'),
+      collaborationMultipleXML = require('./collaboration-multiple.bpmn'),
+      collaborationAssociations = require('./data-associations.bpmn');
 
 
   describe('basic diagram', function() {
