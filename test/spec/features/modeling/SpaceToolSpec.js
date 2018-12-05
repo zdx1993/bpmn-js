@@ -6,6 +6,10 @@ import {
 import modelingModule from 'lib/features/modeling';
 import coreModule from 'lib/core';
 
+import {
+  pick
+} from 'min-dash';
+
 
 describe('features/modeling - create/remove space', function() {
 
@@ -18,8 +22,7 @@ describe('features/modeling - create/remove space', function() {
 
   describe('create space', function() {
 
-
-    it('should create space to the right', inject(function(elementRegistry, modeling, bpmnFactory) {
+    it('to the right', inject(function(elementRegistry, modeling, bpmnFactory) {
 
       // given
       var sequenceFlowElement = elementRegistry.get('SequenceFlow_3'),
@@ -68,7 +71,7 @@ describe('features/modeling - create/remove space', function() {
     }));
 
 
-    it('should create space downwards', inject(function(elementRegistry, modeling, bpmnFactory) {
+    it('downwards', inject(function(elementRegistry, modeling, bpmnFactory) {
 
       // given
       var startEventElement = elementRegistry.get('StartEvent_2'),
@@ -129,7 +132,37 @@ describe('features/modeling - create/remove space', function() {
     }));
 
 
-    it('should remove space to the left', inject(function(elementRegistry, modeling, bpmnFactory) {
+    it('to the left', inject(function(elementRegistry, modeling, bpmnFactory) {
+
+      // given
+      var sequenceFlowElement = elementRegistry.get('SequenceFlow_3');
+
+      var position = pick(sequenceFlowElement.label, [ 'x', 'y' ]);
+
+      var startEventElement = elementRegistry.get('StartEvent_2');
+
+      var delta = { x: -50, y: 0 },
+          direction = 'w';
+
+      // when
+      modeling.createSpace([
+        sequenceFlowElement.label,
+        startEventElement
+      ], [], delta, direction);
+
+      // then
+      expect(sequenceFlowElement.label).to.have.position({
+        x: position.x + delta.x,
+        y: position.y + delta.y
+      });
+    }));
+
+  });
+
+
+  describe('remove space', function() {
+
+    it('to the left', inject(function(elementRegistry, modeling, bpmnFactory) {
 
       // given
       var sequenceFlowElement = elementRegistry.get('SequenceFlow_3'),
@@ -176,8 +209,12 @@ describe('features/modeling - create/remove space', function() {
       expect(sequenceFlow.di.waypoint).eql(diWaypoints);
     }));
 
+  });
 
-    it('should resize to the right', inject(function(elementRegistry, modeling) {
+
+  describe('should resize', function() {
+
+    it('to the right', inject(function(elementRegistry, modeling) {
 
       // given
       var taskElement = elementRegistry.get('Task_1'),
@@ -218,7 +255,11 @@ describe('features/modeling - create/remove space', function() {
           direction = 'w';
 
       // when
-      modeling.createSpace([startEventElement, startEventElement2, taskElement], [subProcessElement], delta, direction);
+      modeling.createSpace([
+        startEventElement,
+        startEventElement2,
+        taskElement
+      ], [subProcessElement], delta, direction);
 
       // then
       expect(subProcess.di).to.have.bounds({
