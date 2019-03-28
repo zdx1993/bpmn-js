@@ -214,6 +214,27 @@ describe('features/modeling - ordering', function() {
 
   });
 
+  describe('groups', function() {
+
+    var diagramXML = require('./ordering.bpmn');
+
+    beforeEach(bootstrapModeler(diagramXML, { modules: testModules }));
+
+
+    describe('should stay always in front', function() {
+
+      it('moving <Group> onto <Participant>', inject(function() {
+
+        // when
+        move('Group', { x: 300, y: 0 }, 'Collaboration', false);
+
+        // then
+        expectZOrder('Collaboration', 'Participant', 'Group');
+      }));
+
+    });
+
+  });
 
   describe('labels', function() {
 

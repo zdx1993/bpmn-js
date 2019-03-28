@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn2:definitions xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="_Sp0bEEZWEeW8AbPIK3dKxg" targetNamespace="http://camunda.org/schema/1.0/bpmn" exporter="Camunda Modeler" exporterVersion="1.2.2" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
+  <bpmn2:category id="Category">
+    <bpmn2:categoryValue id="CategoryValue" value="Group" />
+  </bpmn2:category>
   <bpmn2:collaboration id="Collaboration">
     <bpmn2:participant id="Participant" name="Participant" processRef="Process_Tasks" />
     <bpmn2:participant id="Participant_StartEvent" name="Participant_StartEvent" processRef="Process_StartEvent" />
     <bpmn2:messageFlow id="MessageFlow" name="" sourceRef="Task_With_Boundary" targetRef="Participant_StartEvent" />
+    <bpmn2:group id="Group" categoryValueRef="CategoryValue" />
   </bpmn2:collaboration>
   <bpmn2:process id="Process_Tasks" isExecutable="false">
     <bpmn2:sequenceFlow id="SequenceFlow" name="SequenceFlow" sourceRef="BoundaryEvent" targetRef="Task" />
@@ -100,6 +104,12 @@
         <di:waypoint x="797" y="473" />
         <di:waypoint x="797" y="209" />
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Group_1ubbgym_di" bpmnElement="Group">
+        <dc:Bounds x="183" y="80" width="410" height="270" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="276" y="98" width="58" height="18.96" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn2:definitions>
