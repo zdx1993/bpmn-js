@@ -1462,6 +1462,52 @@ describe('Viewer', function() {
       });
     });
 
+
+    describe.only('performance', function() {
+      this.timeout(1000000);
+
+      var average = function(arr) {return arr.reduce(function(prev, cur) {return prev + cur; }, 0) / arr.length; };
+
+      var xml = require('../fixtures/bpmn/complex.bpmn'),
+          i;
+
+      var importTimes = [];
+      var clearTimes = [];
+      var timer1, timer2;
+
+      after(function() {
+        console.log('importTimes avg:', average(importTimes));
+        console.log('clearTimes avg:', average(clearTimes));
+      });
+
+      for (i = 0; i < 50; i++) {
+
+        it('should clear complex diagram', function(done) {
+
+          var viewer = new Viewer({ container: container });
+
+          timer1 = Date.now();
+          viewer.importXML(xml, function(err, warnings) {
+            timer2 = Date.now();
+            importTimes.push(timer2-timer1);
+
+            timer1 = Date.now();
+
+            // when
+            viewer.clear();
+            timer2 = Date.now();
+            clearTimes.push(timer2-timer1);
+
+            done();
+          });
+
+        });
+      }
+
+
+    });
+
+
   });
 
 
