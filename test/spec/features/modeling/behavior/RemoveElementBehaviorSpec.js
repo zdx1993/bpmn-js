@@ -223,6 +223,28 @@ describe('features/modeling - remove element behavior', function() {
 
       }));
 
+
+      it('should reproduce the same layout after undo-redo', inject(
+        function(commandStack, modeling, elementRegistry) {
+
+          // given
+          var task = elementRegistry.get('Task1'),
+              sequenceFlow1 = elementRegistry.get('SequenceFlow1'),
+              originalWaypoints;
+
+          // when
+          modeling.removeShape(task);
+          originalWaypoints = sequenceFlow1.waypoints.slice();
+
+          commandStack.undo();
+          commandStack.redo();
+
+          // then
+          expect(sequenceFlow1.waypoints).to.eql(originalWaypoints);
+
+        })
+      );
+
     });
 
   });
