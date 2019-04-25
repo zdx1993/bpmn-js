@@ -475,131 +475,205 @@ describe('features/modeling/rules - BpmnRules', function() {
 
   describe('event based gateway', function() {
 
-    var testXML = require('./BpmnRules.eventBasedGateway.bpmn');
+    describe('EventBasedGateway -> EventBasedGateway targets', function() {
 
-    beforeEach(bootstrapModeler(testXML, { modules: testModules }));
+      var testXML = require('./BpmnRules.eventBasedGatewayBasic.bpmn');
 
+      beforeEach(bootstrapModeler(testXML, { modules: testModules }));
 
-    it('connect EventBasedGateway -> IntermediateCatchEvent_Message', inject(function() {
+      it('connect EventBasedGateway -> IntermediateCatchEvent_Message', inject(function() {
 
-      expectCanConnect('EventBasedGateway', 'IntermediateCatchEvent_Message', {
-        sequenceFlow: true,
-        messageFlow: false,
-        association: false,
-        dataAssociation: false
-      });
-    }));
-
-
-    it('connect EventBasedGateway -> IntermediateCatchEvent_Message', inject(function() {
-
-      expectCanConnect('EventBasedGateway', 'IntermediateCatchEvent_Message', {
-        sequenceFlow: true,
-        messageFlow: false,
-        association: false,
-        dataAssociation: false
-      });
-    }));
+        expectCanConnect('EventBasedGateway', 'IntermediateCatchEvent_Message', {
+          sequenceFlow: true,
+          messageFlow: false,
+          association: false,
+          dataAssociation: false
+        });
+      }));
 
 
-    it('connect EventBasedGateway -> IntermediateCatchEvent_Signal', inject(function() {
+      it('connect EventBasedGateway -> IntermediateCatchEvent_Message', inject(function() {
 
-      expectCanConnect('EventBasedGateway', 'IntermediateCatchEvent_Signal', {
-        sequenceFlow: true,
-        messageFlow: false,
-        association: false,
-        dataAssociation: false
-      });
-    }));
-
-
-    it('connect EventBasedGateway -> IntermediateCatchEvent_Condition', inject(function() {
-
-      expectCanConnect('EventBasedGateway', 'IntermediateCatchEvent_Condition', {
-        sequenceFlow: true,
-        messageFlow: false,
-        association: false,
-        dataAssociation: false
-      });
-    }));
+        expectCanConnect('EventBasedGateway', 'IntermediateCatchEvent_Message', {
+          sequenceFlow: true,
+          messageFlow: false,
+          association: false,
+          dataAssociation: false
+        });
+      }));
 
 
-    it('connect EventBasedGateway -> IntermediateCatchEvent_Timer', inject(function() {
+      it('connect EventBasedGateway -> IntermediateCatchEvent_Signal', inject(function() {
 
-      expectCanConnect('EventBasedGateway', 'IntermediateCatchEvent_Timer', {
-        sequenceFlow: true,
-        messageFlow: false,
-        association: false,
-        dataAssociation: false
-      });
-    }));
-
-
-    it('connect EventBasedGateway -> IntermediateCatchEvent', inject(function() {
-
-      expectCanConnect('EventBasedGateway', 'IntermediateCatchEvent', {
-        sequenceFlow: false,
-        messageFlow: false,
-        association: false,
-        dataAssociation: false
-      });
-    }));
+        expectCanConnect('EventBasedGateway', 'IntermediateCatchEvent_Signal', {
+          sequenceFlow: true,
+          messageFlow: false,
+          association: false,
+          dataAssociation: false
+        });
+      }));
 
 
-    it('connect EventBasedGateway -> IntermediateThrowEvent_Message', inject(function() {
+      it('connect EventBasedGateway -> IntermediateCatchEvent_Condition', inject(function() {
 
-      expectCanConnect('EventBasedGateway', 'IntermediateThrowEvent_Message', {
-        sequenceFlow: false,
-        messageFlow: false,
-        association: false,
-        dataAssociation: false
-      });
-    }));
-
-
-    it('connect EventBasedGateway -> ReceiveTask', inject(function() {
-
-      expectCanConnect('EventBasedGateway', 'ReceiveTask', {
-        sequenceFlow: true,
-        messageFlow: false,
-        association: false,
-        dataAssociation: false
-      });
-    }));
+        expectCanConnect('EventBasedGateway', 'IntermediateCatchEvent_Condition', {
+          sequenceFlow: true,
+          messageFlow: false,
+          association: false,
+          dataAssociation: false
+        });
+      }));
 
 
-    it('connect EventBasedGateway -> Task_None', inject(function() {
+      it('connect EventBasedGateway -> IntermediateCatchEvent_Timer', inject(function() {
 
-      expectCanConnect('EventBasedGateway', 'Task_None', {
-        sequenceFlow: false,
-        messageFlow: false,
-        association: false,
-        dataAssociation: false
-      });
-    }));
-
-
-    it('connect EventBasedGateway -> ParallelGateway', inject(function() {
-
-      expectCanConnect('EventBasedGateway', 'ParallelGateway', {
-        sequenceFlow: false,
-        messageFlow: false,
-        association: false,
-        dataAssociation: false
-      });
-    }));
+        expectCanConnect('EventBasedGateway', 'IntermediateCatchEvent_Timer', {
+          sequenceFlow: true,
+          messageFlow: false,
+          association: false,
+          dataAssociation: false
+        });
+      }));
 
 
-    it('connect EventBasedGateway -> ParallelGateway', inject(function() {
+      it('connect EventBasedGateway -> IntermediateCatchEvent', inject(function() {
 
-      expectCanConnect('EventBasedGateway', 'ParallelGateway', {
-        sequenceFlow: false,
-        messageFlow: false,
-        association: false,
-        dataAssociation: false
-      });
-    }));
+        expectCanConnect('EventBasedGateway', 'IntermediateCatchEvent', {
+          sequenceFlow: false,
+          messageFlow: false,
+          association: false,
+          dataAssociation: false
+        });
+      }));
 
+
+      it('connect EventBasedGateway -> IntermediateThrowEvent_Message', inject(function() {
+
+        expectCanConnect('EventBasedGateway', 'IntermediateThrowEvent_Message', {
+          sequenceFlow: false,
+          messageFlow: false,
+          association: false,
+          dataAssociation: false
+        });
+      }));
+
+
+      it('connect EventBasedGateway -> ReceiveTask', inject(function() {
+
+        expectCanConnect('EventBasedGateway', 'ReceiveTask', {
+          sequenceFlow: true,
+          messageFlow: false,
+          association: false,
+          dataAssociation: false
+        });
+      }));
+
+
+      it('connect EventBasedGateway -> Task_None', inject(function() {
+
+        expectCanConnect('EventBasedGateway', 'Task_None', {
+          sequenceFlow: false,
+          messageFlow: false,
+          association: false,
+          dataAssociation: false
+        });
+      }));
+
+
+      it('connect EventBasedGateway -> ParallelGateway', inject(function() {
+
+        expectCanConnect('EventBasedGateway', 'ParallelGateway', {
+          sequenceFlow: false,
+          messageFlow: false,
+          association: false,
+          dataAssociation: false
+        });
+      }));
+
+
+      it('connect EventBasedGateway -> ParallelGateway', inject(function() {
+
+        expectCanConnect('EventBasedGateway', 'ParallelGateway', {
+          sequenceFlow: false,
+          messageFlow: false,
+          association: false,
+          dataAssociation: false
+        });
+      }));
+
+    });
+
+    describe('element -> EventBasedGateway target', function() {
+
+      var testXML = require('./BpmnRules.eventBasedGatewayConfiguration.bpmn');
+
+      beforeEach(bootstrapModeler(testXML, { modules: testModules }));
+
+      it('connect element -> ReceiveTask as EventBasedGateway target',
+        function() {
+
+          expectCanConnect('Task', 'ReceiveTask', {
+            sequenceFlow: false,
+            messageFlow: false,
+            association: false,
+            dataAssociation: false
+          });
+        }
+      );
+
+
+      it('connect element -> IntermediateCatchEvent_Message as EventBasedGateway target',
+        function() {
+
+          expectCanConnect('Task', 'IntermediateCatchEvent_Message', {
+            sequenceFlow: false,
+            messageFlow: false,
+            association: false,
+            dataAssociation: false
+          });
+        }
+      );
+
+
+      it('connect element -> IntermediateCatchEvent_Timer as EventBasedGateway target',
+        function() {
+
+          expectCanConnect('Task', 'IntermediateCatchEvent_Timer', {
+            sequenceFlow: false,
+            messageFlow: false,
+            association: false,
+            dataAssociation: false
+          });
+        }
+      );
+
+
+      it('connect element -> IntermediateCatchEvent_Condition as EventBasedGateway target',
+        function() {
+
+          expectCanConnect('Task', 'IntermediateCatchEvent_Condition', {
+            sequenceFlow: false,
+            messageFlow: false,
+            association: false,
+            dataAssociation: false
+          });
+        }
+      );
+
+
+      it('connect element -> IntermediateCatchEvent_Signal as EventBasedGateway target',
+        function() {
+
+          expectCanConnect('Task', 'IntermediateCatchEvent_Signal', {
+            sequenceFlow: false,
+            messageFlow: false,
+            association: false,
+            dataAssociation: false
+          });
+        }
+      );
+
+    });
   });
 
 
