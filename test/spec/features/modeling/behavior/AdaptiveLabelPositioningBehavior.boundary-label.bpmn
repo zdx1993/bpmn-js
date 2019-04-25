@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_08hpb4u" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.0.1">
+  <bpmn:process id="Process" isExecutable="true">
+    <bpmn:task id="Task_A" name="Task_A" />
+    <bpmn:boundaryEvent id="Boundary" attachedToRef="Task_A">
+      <bpmn:outgoing>Flow</bpmn:outgoing>
+    </bpmn:boundaryEvent>
+    <bpmn:task id="Task_B" name="Task_B">
+      <bpmn:incoming>Flow</bpmn:incoming>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow" sourceRef="Boundary" targetRef="Task_B" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process">
+      <bpmndi:BPMNShape id="Task_A_di" bpmnElement="Task_A">
+        <dc:Bounds x="156" y="81" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Boundary_di" bpmnElement="Boundary">
+        <dc:Bounds x="196" y="143" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="190" y="194" width="48" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_B_di" bpmnElement="Task_B">
+        <dc:Bounds x="263" y="215" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_di" bpmnElement="Flow">
+        <di:waypoint x="214" y="179" />
+        <di:waypoint x="214" y="255" />
+        <di:waypoint x="263" y="255" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

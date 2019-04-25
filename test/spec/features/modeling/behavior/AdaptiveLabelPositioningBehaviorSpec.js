@@ -284,4 +284,34 @@ describe('modeling/behavior - AdaptiveLabelPositioningBehavior', function() {
 
   });
 
+
+  describe('advanced', function() {
+
+    describe('boundary label placement', function() {
+
+      var diagramXML = require('./AdaptiveLabelPositioningBehavior.boundary-label.bpmn');
+
+      beforeEach(bootstrapModeler(diagramXML, {
+        modules: testModules
+      }));
+
+
+      it.skip('should not place label onto host', inject(
+        function(elementRegistry, modeling) {
+
+          // given
+          var element = elementRegistry.get('Boundary');
+
+          // when
+          modeling.updateProperties(element, { name: 'FOO BAR' });
+
+          // then
+          expectLabelOrientation(element, 'bottom');
+        }
+      ));
+
+    });
+
+  });
+
 });
